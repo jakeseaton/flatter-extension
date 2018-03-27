@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "Flatter",
+    "version": "0.0.1",
+    "description": "flatter prototype chrome extension",
+    "background": {
+        "scripts": ["axios.js", "background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "declarativeContent",
+        "storage",
+        "tabs",
+        "activeTab",
+        "*://*/*"
+    ],
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_title": "Flatter!"
+    },
+    "options_page": "options.html",
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "css": [],
+            "js": ["jquery.js", "axios.js", "content.js"]
+        }
+    ]
+
+}
