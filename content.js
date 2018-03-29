@@ -1,4 +1,6 @@
 import actions from "./constants/actions"
+import axios from 'axios'
+import jquery from 'jquery'
 
 // OPENED_FOLLOWERS = false;
 // OPENED_FOLLOWING = false;
@@ -15,17 +17,17 @@ import actions from "./constants/actions"
 //       sendResponse({farewell: "goodbye"});
 //   });
 // profilePictureUrl = "https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/24059483_10212934947067195_686594785522664926_o.jpg?_nc_cat=0&oh=1f7e3e28cf4a4bf36946224311056a17&oe=5B3EB965"
-profilePictureUrl = "https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/22713467_10212853769512353_443941326985392112_o.jpg?_nc_cat=0&oh=f41d18f0cd7837ca2f4fe6ca2896ea4a&oe=5B6E2CF0"
+const profilePictureUrl = "https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/22713467_10212853769512353_443941326985392112_o.jpg?_nc_cat=0&oh=f41d18f0cd7837ca2f4fe6ca2896ea4a&oe=5B6E2CF0"
 chrome.runtime.sendMessage({action: actions.QUERY_SHOULD_RUN}, ({ shouldRun }) => {
-  if (shouldRun){
-    imageUrls = []
-    // have to use the parameters because the fat arrow autobinds
-    $("img.product-listing-image").map((idx, img) => {
-        src = $(img).attr("src")
-        imageUrls.push(src)
-        $(img).attr("src", profilePictureUrl)
-    })
-    }
+    if (shouldRun){
+        const imageUrls = []
+        // have to use the parameters because the fat arrow autobinds
+        $("img.product-listing-image").map((idx, img) => {
+            const src = $(img).attr("src")
+            imageUrls.push(src)
+            $(img).attr("src", profilePictureUrl)
+        })
+        }
 });
 // chrome
     // .runtime

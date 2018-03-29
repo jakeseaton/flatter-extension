@@ -1,3 +1,5 @@
+// import axios from 'axios'
+// import urls from './constants/urls'
 // chrome.runtime.onInstalled.addListener(function() {
 //     // chrome.storage.sync.set({color: '#3aa757'}, function() {
 //     //   console.log("The color is green.");
@@ -17,22 +19,15 @@
 
   //https://www.hanes.com/shop/hanes/men/t-shirts/short-sleeve
 
-actions = {
-    FOLLOWERS_BUTTON_CLICKED:"FOLLOWERS_BUTTON_CLICKED",
-    FOLLOWING_BUTTON_CLICKED:"FOLLOWING_BUTTON_CLICKED",
-    QUERY_ACTIVE_TAB: "QUERY_ACTIVE_TAB",
-    QUERY_SHOULD_RUN: "QUERY_SHOULD_RUN",
-}
 // console.log("YOOOO")
 
-hanes = "www.hanes.com/shop/hanes/men/t-shirts/short-sleeve"
 
 // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 //   chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
 //     console.log(response.farewell);
 //   });
 // });
-
+debugger;
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{
     console.log("Message received!", request);
 
@@ -40,8 +35,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{
         case actions.QUERY_SHOULD_RUN:
             chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
                 console.log("Queried tabs", tabs);
-                console.log(tabs[0].url.includes(hanes));
-                sendResponse({ shouldRun: tabs[0].url.includes(hanes) });
+                sendResponse({ shouldRun: tabs[0].url.includes(urls.hanes) });
             })
             return true;
             break;
